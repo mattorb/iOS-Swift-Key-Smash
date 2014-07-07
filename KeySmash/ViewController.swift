@@ -9,6 +9,15 @@ extension UIKeyCommand {
     }
 }
 
+extension String {
+    func each(closure: (String) -> Void ) { // convenience  loop with Character->String convert built in
+        for digit in self
+        {
+            closure(String(digit))
+        }
+    }
+}
+
 class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var textField: UITextField
@@ -21,6 +30,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         textField.delegate=self
         
         synthesizer.stopSpeakingAtBoundary(AVSpeechBoundary.Immediate)
+        speak("Press any key")
     }
     
     func keyCommands() -> [AnyObject]! {
@@ -30,24 +40,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // order matters.  ! needs priority over shift-1, @ over shift-2, etc
         let digits = "!@#$%^&*()~`_+{}|:\"<>?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=[]\\;',./"
 
-        for digit in digits
-        {
-            let sdigit = String(digit)
-            commands += [UIKeyCommand(sdigit, nil, "sayKey:"),
-                         UIKeyCommand(sdigit, .AlphaShift, "sayKey:"),
-                         UIKeyCommand(sdigit, .Shift, "sayKey:"),
-                         UIKeyCommand(sdigit, UIKeyModifierFlags.Shift|UIKeyModifierFlags.AlphaShift, "sayKey:")]
-        }
+        digits.each({
+            commands += [UIKeyCommand($0, nil, "sayKey:"),
+                         UIKeyCommand($0, .AlphaShift, "sayKey:"),
+                         UIKeyCommand($0, .Shift, "sayKey:"),
+                         UIKeyCommand($0, .Shift | .AlphaShift, "sayKey:")]
+        });
 
-        for digit in digits
-        {
-            let sdigit = String(digit)
-
-            // handle some resting/smashy palms/fingers in combination with normal keys
-            commands += [UIKeyCommand(sdigit, .Command, "sayKey:"),
-                         UIKeyCommand(sdigit, .Control, "sayKey:"),
-                         UIKeyCommand(sdigit, .Alternate, "sayKey:")]
-        }
+        // handle some lingering press on ctrl/etc + digit
+        digits.each({
+            commands += [UIKeyCommand($0, .Command, "sayKey:"),
+                         UIKeyCommand($0, .Control, "sayKey:"),
+                         UIKeyCommand($0, .Alternate, "sayKey:")]
+        });
         
         commands += [UIKeyCommand(UIKeyInputEscape, nil, "sayKey:"),
                      UIKeyCommand(UIKeyInputUpArrow, nil, "sayKey:"),
