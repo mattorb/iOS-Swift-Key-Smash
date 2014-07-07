@@ -67,7 +67,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func sayKey(command:UIKeyCommand) {
         switch (command.input)
         {
-            //hmph. no ~= operator (needed for case test) for String to NSString?
+            //hmph. "NSString is not convertible to 'OptionalNilComparisonType'"
             case String(UIKeyInputEscape):      speak("escape")
             case String(UIKeyInputLeftArrow):   speak("left")
             case String(UIKeyInputRightArrow):  speak("right")
