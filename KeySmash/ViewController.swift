@@ -10,7 +10,8 @@ extension UIKeyCommand {
 }
 
 extension String {
-    func each(closure: (String) -> Void ) { // convenience  loop with Character->String convert built in
+    // convenience way to loop through with Character->String convert built in
+    func each(closure: (String) -> Void ) {
         for digit in self
         {
             closure(String(digit))
@@ -67,12 +68,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         switch (command.input)
         {
             //hmph. no ~= operator (needed for case test) for String to NSString?
-            case String(UIKeyInputEscape):speak("escape")
-            case String(UIKeyInputLeftArrow):speak("left")
-            case String(UIKeyInputRightArrow):speak("right")
-            case String(UIKeyInputUpArrow):speak("up")
-            case String(UIKeyInputDownArrow):speak("down")
-            default: speak(command.input)
+            case String(UIKeyInputEscape):      speak("escape")
+            case String(UIKeyInputLeftArrow):   speak("left")
+            case String(UIKeyInputRightArrow):  speak("right")
+            case String(UIKeyInputUpArrow):     speak("up")
+            case String(UIKeyInputDownArrow):   speak("down")
+            default:                            speak(command.input)
         }
     }
     
