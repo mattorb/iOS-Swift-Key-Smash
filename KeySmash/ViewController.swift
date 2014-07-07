@@ -23,9 +23,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         synthesizer.stopSpeakingAtBoundary(AVSpeechBoundary.Immediate)
     }
     
-    func keyCommands() -> AnyObject[]! {
+    func keyCommands() -> [AnyObject]! {
         
-        var commands = Array<UIKeyCommand>()
+        var commands = [UIKeyCommand]()
         
         // order matters.  ! needs priority over shift-1, @ over shift-2, etc
         let digits = "!@#$%^&*()~`_+{}|:\"<>?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=[]\\;',./"
@@ -33,7 +33,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         for digit in digits
         {
             let sdigit = String(digit)
-            
             commands += [UIKeyCommand(sdigit, nil, "sayKey:"),
                          UIKeyCommand(sdigit, .AlphaShift, "sayKey:"),
                          UIKeyCommand(sdigit, .Shift, "sayKey:"),
