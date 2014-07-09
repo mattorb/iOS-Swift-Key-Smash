@@ -12,7 +12,7 @@ func externalKeyboardKeys(callback:Selector) -> [UIKeyCommand] {
     var commands = [UIKeyCommand]()
     
     // order matters.  ! needs priority over shift-1, @ over shift-2, etc
-    let digits = "!@#$%^&*()~`_+{}|:\"<>?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=[]\\;',./"
+    let digits = "!@#$%^&*()~`_+{}|:\"<>?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=[]\\;',./ "
     
     digits.each({
         commands += [UIKeyCommand($0, nil, callback),

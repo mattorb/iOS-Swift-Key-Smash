@@ -35,10 +35,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool // return NO to not change text
     {
-        if(string == " ") { // special case?
-            currentMode.respondTo(string)
-        }
-        
         return false; // don't actually change the textfield
     }
 
