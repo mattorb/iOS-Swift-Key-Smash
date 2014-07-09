@@ -17,12 +17,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         speak("Press any key")
     }
     
-    func keyCommands() -> [UIKeyCommand]! { // array of UIKeyCommand fails.
+    func keyCommands() -> [UIKeyCommand]! {
         return externalKeyboardKeys()
     }
     
     func sayKey(command:UIKeyCommand) {
-        switch (NSString(string:command.input)) // UIKeyConstants are NSStrings
+        switch (NSString(string:command.input)) // UIKeyConstants are NSStrings, beta3 needs same type
         {
             case UIKeyInputEscape:      speak("escape")
             case UIKeyInputLeftArrow:   speak("left")
@@ -37,6 +37,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let utterance = AVSpeechUtterance(string: word.lowercaseString)
         synthesizer.speakUtterance(utterance)
     }
+    
     
     func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool // return NO to not change text
     {
