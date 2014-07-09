@@ -15,7 +15,7 @@ class SayPressedKeyMode : InteractionMode {
     }
     
     func respondTo(key: String) {
-        switch (NSString(string:key)) // UIKeyConstants are NSStrings, beta3 needs same type
+        switch (key as NSString) // UIKeyConstants are NSStrings, beta3 needs same type
         {
             case UIKeyInputEscape:      say("escape")
             case UIKeyInputLeftArrow:   say("left")

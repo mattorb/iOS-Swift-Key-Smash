@@ -23,7 +23,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func sayKey(command:UIKeyCommand) {
-        if(NSString(string: command.input) == UIKeyInputRightArrow)
+        if(command.input as NSString == UIKeyInputRightArrow)
         {
             nextMode()
         }
