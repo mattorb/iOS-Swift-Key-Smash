@@ -8,31 +8,31 @@ extension UIKeyCommand {
     }
 }
 
-func externalKeyboardKeys() -> [UIKeyCommand] {
+func externalKeyboardKeys(callback:Selector) -> [UIKeyCommand] {
     var commands = [UIKeyCommand]()
     
     // order matters.  ! needs priority over shift-1, @ over shift-2, etc
     let digits = "!@#$%^&*()~`_+{}|:\"<>?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=[]\\;',./"
     
     digits.each({
-        commands += [UIKeyCommand($0, nil, "sayKey:"),
-                     UIKeyCommand($0, .AlphaShift, "sayKey:"),
-                     UIKeyCommand($0, .Shift, "sayKey:"),
-                     UIKeyCommand($0, .Shift | .AlphaShift, "sayKey:")]
-        });
+        commands += [UIKeyCommand($0, nil, callback),
+                     UIKeyCommand($0, .AlphaShift, callback),
+                     UIKeyCommand($0, .Shift, callback),
+                     UIKeyCommand($0, .Shift | .AlphaShift, callback)]
+    });
     
     // handle some lingering press on ctrl/etc + digit
     digits.each({
-        commands += [UIKeyCommand($0, .Command, "sayKey:"),
-                     UIKeyCommand($0, .Control, "sayKey:"),
-                     UIKeyCommand($0, .Alternate, "sayKey:")]
-        });
+        commands += [UIKeyCommand($0, .Command, callback),
+                     UIKeyCommand($0, .Control, callback),
+                     UIKeyCommand($0, .Alternate, callback)]
+    });
     
-    commands += [UIKeyCommand(UIKeyInputEscape, nil, "sayKey:"),
-                 UIKeyCommand(UIKeyInputUpArrow, nil, "sayKey:"),
-                 UIKeyCommand(UIKeyInputDownArrow, nil, "sayKey:"),
-                 UIKeyCommand(UIKeyInputLeftArrow, nil, "sayKey:"),
-                 UIKeyCommand(UIKeyInputRightArrow, nil, "sayKey:")]
+    commands += [UIKeyCommand(UIKeyInputEscape, nil, callback),
+                 UIKeyCommand(UIKeyInputUpArrow, nil, callback),
+                 UIKeyCommand(UIKeyInputDownArrow, nil, callback),
+                 UIKeyCommand(UIKeyInputLeftArrow, nil, callback),
+                 UIKeyCommand(UIKeyInputRightArrow, nil, callback)]
     
     return commands
 }

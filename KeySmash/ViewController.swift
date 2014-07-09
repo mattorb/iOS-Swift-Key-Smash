@@ -6,52 +6,54 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var textField: UITextField
 
-    let synthesizer = AVSpeechSynthesizer()
+    let modeList: [InteractionMode] = [SayPressedKeyMode(), HuntForKeyMode()]
+    var currentModeIndex = 0
+    var currentMode : InteractionMode { return modeList[currentModeIndex] }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        textField.becomeFirstResponder()    // focus on tf brings up the keyboard
+        textField.becomeFirstResponder()    // focus on textField brings up the keyboard
         textField.delegate=self
         
-        synthesizer.stopSpeakingAtBoundary(AVSpeechBoundary.Immediate)
-        speak("Press any key")
+        currentMode.start()
     }
     
     func keyCommands() -> [UIKeyCommand]! {
-        return externalKeyboardKeys()
+        return externalKeyboardKeys(Selector("sayKey:"))
     }
     
     func sayKey(command:UIKeyCommand) {
-        switch (NSString(string:command.input)) // UIKeyConstants are NSStrings, beta3 needs same type
+        if(NSString(string: command.input) == UIKeyInputRightArrow)
         {
-            case UIKeyInputEscape:      speak("escape")
-            case UIKeyInputLeftArrow:   speak("left")
-            case UIKeyInputRightArrow:  speak("right")
-            case UIKeyInputUpArrow:     speak("up")
-            case UIKeyInputDownArrow:   speak("down")
-            default:                    speak(command.input)
+            nextMode()
+        }
+        else
+        {
+            currentMode.respondTo(command.input)
         }
     }
     
-    func speak(word:String) {
-        let utterance = AVSpeechUtterance(string: word.lowercaseString)
-        synthesizer.speakUtterance(utterance)
-    }
-    
-    
     func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool // return NO to not change text
     {
-        if(string == " ") {
-            speak("space")
+        if(string == " ") { // special case?
+            currentMode.respondTo(string)
         }
         
         return false; // don't actually change the textfield
     }
-    
+
     func textFieldShouldReturn(textField: UITextField!) -> Bool
     {
-        speak("enter")
+        currentMode.respondTo("enter")
         return false //ignore enter
+    }
+    
+    func nextMode()
+    {
+        currentModeIndex++
+        if(currentModeIndex > modeList.count-1) { currentModeIndex=0; }
+        
+        currentMode.start()
     }
 }
 
