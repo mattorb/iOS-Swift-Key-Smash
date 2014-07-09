@@ -16,23 +16,23 @@ func externalKeyboardKeys() -> [UIKeyCommand] {
     
     digits.each({
         commands += [UIKeyCommand($0, nil, "sayKey:"),
-            UIKeyCommand($0, .AlphaShift, "sayKey:"),
-            UIKeyCommand($0, .Shift, "sayKey:"),
-            UIKeyCommand($0, .Shift | .AlphaShift, "sayKey:")]
+                     UIKeyCommand($0, .AlphaShift, "sayKey:"),
+                     UIKeyCommand($0, .Shift, "sayKey:"),
+                     UIKeyCommand($0, .Shift | .AlphaShift, "sayKey:")]
         });
     
     // handle some lingering press on ctrl/etc + digit
     digits.each({
         commands += [UIKeyCommand($0, .Command, "sayKey:"),
-            UIKeyCommand($0, .Control, "sayKey:"),
-            UIKeyCommand($0, .Alternate, "sayKey:")]
+                     UIKeyCommand($0, .Control, "sayKey:"),
+                     UIKeyCommand($0, .Alternate, "sayKey:")]
         });
     
     commands += [UIKeyCommand(UIKeyInputEscape, nil, "sayKey:"),
-        UIKeyCommand(UIKeyInputUpArrow, nil, "sayKey:"),
-        UIKeyCommand(UIKeyInputDownArrow, nil, "sayKey:"),
-        UIKeyCommand(UIKeyInputLeftArrow, nil, "sayKey:"),
-        UIKeyCommand(UIKeyInputRightArrow, nil, "sayKey:")]
+                 UIKeyCommand(UIKeyInputUpArrow, nil, "sayKey:"),
+                 UIKeyCommand(UIKeyInputDownArrow, nil, "sayKey:"),
+                 UIKeyCommand(UIKeyInputLeftArrow, nil, "sayKey:"),
+                 UIKeyCommand(UIKeyInputRightArrow, nil, "sayKey:")]
     
     return commands
 }
