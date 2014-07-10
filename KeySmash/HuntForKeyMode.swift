@@ -3,15 +3,11 @@ import AVFoundation
 
 class HuntForKeyMode : InteractionMode {
 
-    let letters = Array("abcdefghijklmnopqrstuvwxyz")
-
     let synthesizer = AVSpeechSynthesizer()
 
-    var targetKey = ""
     
-    init() {
-        synthesizer.stopSpeakingAtBoundary(AVSpeechBoundary.Immediate)
-    }
+    let letters = Array("abcdefghijklmnopqrstuvwxyz")
+    var targetKey = ""
     
     func start()  {
         randomizeKey()
@@ -20,13 +16,13 @@ class HuntForKeyMode : InteractionMode {
     func respondTo(key: String)  {
         if(key == targetKey)
         {
-            say("Great job! You pressed the letter \(targetKey)")
+            immediatelySay("Great job! You pressed the letter \(targetKey)")
             
             randomizeKey()
         }
         else
         {
-            say("No.  Try again.")
+            immediatelySay("No.  Try again.  Press the \(targetKey) key")
         }
     }
     
@@ -41,4 +37,11 @@ class HuntForKeyMode : InteractionMode {
         let utterance = AVSpeechUtterance(string: word.lowercaseString)
         synthesizer.speakUtterance(utterance)
     }
+    
+    func immediatelySay(word: String) {
+        let utterance = AVSpeechUtterance(string: word.lowercaseString)
+        synthesizer.stopSpeakingAtBoundary(.Immediate)
+        synthesizer.speakUtterance(utterance)
+    }
+    
 }

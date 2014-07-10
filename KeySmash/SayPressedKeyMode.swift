@@ -6,10 +6,6 @@ class SayPressedKeyMode : InteractionMode {
 
     let synthesizer = AVSpeechSynthesizer()
 
-    init() {
-        synthesizer.stopSpeakingAtBoundary(AVSpeechBoundary.Immediate)
-    }
-
     func start()  {
         say("Press any Key")
     }
@@ -29,6 +25,7 @@ class SayPressedKeyMode : InteractionMode {
     
     func say(word: String) {
         let utterance = AVSpeechUtterance(string: word.lowercaseString)
+        synthesizer.stopSpeakingAtBoundary(AVSpeechBoundary.Immediate)
         synthesizer.speakUtterance(utterance)
     }
 }
