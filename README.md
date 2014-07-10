@@ -1,3 +1,5 @@
+![alt tag](http://raw.githubusercontent.com/mattorb/iOS-Swift-Key-Smash/gh-pages/keysmashlive.gif)
+
 iOS-Swift-Key-Smash
 ===================
 
