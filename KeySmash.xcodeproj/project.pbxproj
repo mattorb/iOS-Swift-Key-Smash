@@ -12,6 +12,7 @@
 		4547C2A7195DF1C10075EBB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4547C2A5195DF1C10075EBB0 /* Main.storyboard */; };
 		4547C2A9195DF1C10075EBB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4547C2A8195DF1C10075EBB0 /* Images.xcassets */; };
 		456C0000196EF373005E8E9C /* OrderedAlphabet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456CFFFF196EF373005E8E9C /* OrderedAlphabet.swift */; };
+		456C0002196EF8C5005E8E9C /* Counting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456C0001196EF8C5005E8E9C /* Counting.swift */; };
 		456CDE9E196ED97D00B0F836 /* HuntForKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456CDE9B196ED97D00B0F836 /* HuntForKey.swift */; };
 		456CDE9F196ED97D00B0F836 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456CDE9C196ED97D00B0F836 /* Mode.swift */; };
 		456CDEA0196ED97D00B0F836 /* SayPressedKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456CDE9D196ED97D00B0F836 /* SayPressedKey.swift */; };
@@ -26,6 +27,7 @@
 		4547C2A3195DF1C10075EBB0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4547C2A6195DF1C10075EBB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4547C2A8195DF1C10075EBB0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		456C0001196EF8C5005E8E9C /* Counting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Counting.swift; sourceTree = "<group>"; };
 		456CDE9B196ED97D00B0F836 /* HuntForKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntForKey.swift; sourceTree = "<group>"; };
 		456CDE9C196ED97D00B0F836 /* Mode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
 		456CDE9D196ED97D00B0F836 /* SayPressedKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SayPressedKey.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				456CDE9B196ED97D00B0F836 /* HuntForKey.swift */,
 				456CDE9D196ED97D00B0F836 /* SayPressedKey.swift */,
 				456CFFFF196EF373005E8E9C /* OrderedAlphabet.swift */,
+				456C0001196EF8C5005E8E9C /* Counting.swift */,
 			);
 			path = modes;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 				45FC1164196DCC1A008985F0 /* StringExtensions.swift in Sources */,
 				456CDEA0196ED97D00B0F836 /* SayPressedKey.swift in Sources */,
 				45FC1162196DCB63008985F0 /* ExternalKeyboard.swift in Sources */,
+				456C0002196EF8C5005E8E9C /* Counting.swift in Sources */,
 				456CDE9F196ED97D00B0F836 /* Mode.swift in Sources */,
 				456CDE9E196ED97D00B0F836 /* HuntForKey.swift in Sources */,
 				4547C2A4195DF1C10075EBB0 /* ViewController.swift in Sources */,
