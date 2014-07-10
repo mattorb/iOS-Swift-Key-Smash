@@ -13,7 +13,7 @@ Available modes
 
 1.  Press a key and hear it said.
 2.  Hunt for and press a key that is spoken aloud.
-
+3.  Type the abc's in order.
 
 notes
 
