@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-protocol InteractionMode {
+protocol Mode {
     func start() -> Void
     func respondTo(key:String) -> Void
 }

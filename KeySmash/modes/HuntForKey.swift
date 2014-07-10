@@ -1,11 +1,10 @@
 import Foundation
 import AVFoundation
 
-class HuntForKeyMode : InteractionMode {
+class HuntForKey : Mode {
 
     let synthesizer = AVSpeechSynthesizer()
 
-    
     let letters = Array("abcdefghijklmnopqrstuvwxyz")
     var targetKey = ""
     

@@ -6,9 +6,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var textField: UITextField
 
-    let modeList: [InteractionMode] = [SayPressedKeyMode(), HuntForKeyMode()]
+    let modeList: [Mode] = [SayPressedKey(), HuntForKey()]
     var currentModeIndex = 0
-    var currentMode : InteractionMode { return modeList[currentModeIndex] }
+    var currentMode : Mode { return modeList[currentModeIndex] }
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -11,9 +11,9 @@
 		4547C2A4195DF1C10075EBB0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4547C2A3195DF1C10075EBB0 /* ViewController.swift */; };
 		4547C2A7195DF1C10075EBB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4547C2A5195DF1C10075EBB0 /* Main.storyboard */; };
 		4547C2A9195DF1C10075EBB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4547C2A8195DF1C10075EBB0 /* Images.xcassets */; };
-		456CDE8D196DDE6400B0F836 /* InteractionMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456CDE8C196DDE6400B0F836 /* InteractionMode.swift */; };
-		456CDE91196DE59000B0F836 /* HuntForKeyMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456CDE90196DE59000B0F836 /* HuntForKeyMode.swift */; };
-		456CDE93196DEF1C00B0F836 /* SayPressedKeyMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456CDE92196DEF1C00B0F836 /* SayPressedKeyMode.swift */; };
+		456CDE9E196ED97D00B0F836 /* HuntForKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456CDE9B196ED97D00B0F836 /* HuntForKey.swift */; };
+		456CDE9F196ED97D00B0F836 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456CDE9C196ED97D00B0F836 /* Mode.swift */; };
+		456CDEA0196ED97D00B0F836 /* SayPressedKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456CDE9D196ED97D00B0F836 /* SayPressedKey.swift */; };
 		45FC1162196DCB63008985F0 /* ExternalKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FC1161196DCB63008985F0 /* ExternalKeyboard.swift */; };
 		45FC1164196DCC1A008985F0 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FC1163196DCC1A008985F0 /* StringExtensions.swift */; };
 /* End PBXBuildFile section */
@@ -25,9 +25,9 @@
 		4547C2A3195DF1C10075EBB0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4547C2A6195DF1C10075EBB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4547C2A8195DF1C10075EBB0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		456CDE8C196DDE6400B0F836 /* InteractionMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionMode.swift; sourceTree = "<group>"; };
-		456CDE90196DE59000B0F836 /* HuntForKeyMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntForKeyMode.swift; sourceTree = "<group>"; };
-		456CDE92196DEF1C00B0F836 /* SayPressedKeyMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SayPressedKeyMode.swift; sourceTree = "<group>"; };
+		456CDE9B196ED97D00B0F836 /* HuntForKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntForKey.swift; sourceTree = "<group>"; };
+		456CDE9C196ED97D00B0F836 /* Mode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
+		456CDE9D196ED97D00B0F836 /* SayPressedKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SayPressedKey.swift; sourceTree = "<group>"; };
 		45FC1161196DCB63008985F0 /* ExternalKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalKeyboard.swift; sourceTree = "<group>"; };
 		45FC1163196DCC1A008985F0 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,11 +62,9 @@
 		4547C29E195DF1C10075EBB0 /* KeySmash */ = {
 			isa = PBXGroup;
 			children = (
-				4547C2A1195DF1C10075EBB0 /* AppDelegate.swift */,
+				456CDE9A196ED97D00B0F836 /* modes */,
 				4547C2A3195DF1C10075EBB0 /* ViewController.swift */,
-				456CDE8C196DDE6400B0F836 /* InteractionMode.swift */,
-				456CDE92196DEF1C00B0F836 /* SayPressedKeyMode.swift */,
-				456CDE90196DE59000B0F836 /* HuntForKeyMode.swift */,
+				4547C2A1195DF1C10075EBB0 /* AppDelegate.swift */,
 				45FC1161196DCB63008985F0 /* ExternalKeyboard.swift */,
 				45FC1163196DCC1A008985F0 /* StringExtensions.swift */,
 				4547C2A5195DF1C10075EBB0 /* Main.storyboard */,
@@ -82,6 +80,16 @@
 				4547C2A0195DF1C10075EBB0 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		456CDE9A196ED97D00B0F836 /* modes */ = {
+			isa = PBXGroup;
+			children = (
+				456CDE9C196ED97D00B0F836 /* Mode.swift */,
+				456CDE9B196ED97D00B0F836 /* HuntForKey.swift */,
+				456CDE9D196ED97D00B0F836 /* SayPressedKey.swift */,
+			);
+			path = modes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,12 +162,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				45FC1164196DCC1A008985F0 /* StringExtensions.swift in Sources */,
+				456CDEA0196ED97D00B0F836 /* SayPressedKey.swift in Sources */,
 				45FC1162196DCB63008985F0 /* ExternalKeyboard.swift in Sources */,
-				456CDE93196DEF1C00B0F836 /* SayPressedKeyMode.swift in Sources */,
+				456CDE9F196ED97D00B0F836 /* Mode.swift in Sources */,
+				456CDE9E196ED97D00B0F836 /* HuntForKey.swift in Sources */,
 				4547C2A4195DF1C10075EBB0 /* ViewController.swift in Sources */,
-				456CDE91196DE59000B0F836 /* HuntForKeyMode.swift in Sources */,
 				4547C2A2195DF1C10075EBB0 /* AppDelegate.swift in Sources */,
-				456CDE8D196DDE6400B0F836 /* InteractionMode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

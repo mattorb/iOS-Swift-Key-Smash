@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import AVFoundation
 
-class SayPressedKeyMode : InteractionMode {
+class SayPressedKey : Mode {
 
     let synthesizer = AVSpeechSynthesizer()
 
