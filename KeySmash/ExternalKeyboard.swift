@@ -20,18 +20,15 @@ func externalKeyboardKeys(callback:Selector) -> [UIKeyCommand] {
     let digits = "!@#$%^&*()~`_+{}|:\"<>?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=[]\\;',./ "
     
     for digit in digits {
-        commands += [
-            UIKeyCommand(digit, nil, callback),
-            UIKeyCommand(digit, .AlphaShift, callback),
-            UIKeyCommand(digit, .Shift, callback),
-            UIKeyCommand(digit, .Shift | .AlphaShift, callback)]
+        commands += [nil, .AlphaShift, .Shift, .Shift | .AlphaShift].map { UIKeyCommand(digit, $0, callback) }
     }
     
     // handle some lingering press on ctrl/etc + digit
     for digit in digits {
-        commands += [UIKeyCommand(digit, .Command, callback),
-                     UIKeyCommand(digit, .Control, callback),
-                     UIKeyCommand(digit, .Alternate, callback)]
+         // two-lines because combining them in beta4 causes compiler crash/stuck
+         commands += [.Command, .Control, .Alternate, .Command | .Control, .Command].map { UIKeyCommand(digit, $0, callback) }
+         commands += [.Alternate, .Command | .Control | .Alternate, .Control | .Alternate, .Alternate | .Command].map { UIKeyCommand(digit, $0, callback) }
+        // two-lines because combining them in beta4 causes compiler crash/stuck
     }
     
     commands += [UIKeyCommand(UIKeyInputEscape, nil, callback),
@@ -42,3 +39,4 @@ func externalKeyboardKeys(callback:Selector) -> [UIKeyCommand] {
     
     return commands
 }
+
