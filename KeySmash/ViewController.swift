@@ -4,7 +4,7 @@ import AVFoundation
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet var textField: UITextField
+    @IBOutlet var textField: UITextField!
 
     let modeList: [Mode] = [SayPressedKey(), HuntForKey(), OrderedAlphabet(), Counting()]
     var currentModeIndex = 0

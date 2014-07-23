@@ -3,6 +3,11 @@ import UIKit
 
 extension UIKeyCommand {
     // allow unnamed params since we re-use this like 20 times in close proximity and the meaning is clear.
+    
+    convenience init( _ input: Character!, _ modifierFlags: UIKeyModifierFlags, _ action: Selector) {
+        self.init(input: String(input), modifierFlags: modifierFlags, action: action)
+    }
+    
     convenience init( _ input: String!, _ modifierFlags: UIKeyModifierFlags, _ action: Selector) {
         self.init(input: input, modifierFlags: modifierFlags, action: action)
     }
@@ -14,19 +19,20 @@ func externalKeyboardKeys(callback:Selector) -> [UIKeyCommand] {
     // order matters.  ! needs priority over shift-1, @ over shift-2, etc
     let digits = "!@#$%^&*()~`_+{}|:\"<>?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=[]\\;',./ "
     
-    digits.each({
-        commands += [UIKeyCommand($0, nil, callback),
-                     UIKeyCommand($0, .AlphaShift, callback),
-                     UIKeyCommand($0, .Shift, callback),
-                     UIKeyCommand($0, .Shift | .AlphaShift, callback)]
-    });
+    for digit in digits {
+        commands += [
+            UIKeyCommand(digit, nil, callback),
+            UIKeyCommand(digit, .AlphaShift, callback),
+            UIKeyCommand(digit, .Shift, callback),
+            UIKeyCommand(digit, .Shift | .AlphaShift, callback)]
+    }
     
     // handle some lingering press on ctrl/etc + digit
-    digits.each({
-        commands += [UIKeyCommand($0, .Command, callback),
-                     UIKeyCommand($0, .Control, callback),
-                     UIKeyCommand($0, .Alternate, callback)]
-    });
+    for digit in digits {
+        commands += [UIKeyCommand(digit, .Command, callback),
+                     UIKeyCommand(digit, .Control, callback),
+                     UIKeyCommand(digit, .Alternate, callback)]
+    }
     
     commands += [UIKeyCommand(UIKeyInputEscape, nil, callback),
                  UIKeyCommand(UIKeyInputUpArrow, nil, callback),
