@@ -9,6 +9,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let modeList: [Mode] = [SayPressedKey(), HuntForKey(), OrderedAlphabet(), Counting()]
     var currentModeIndex = 0
     var currentMode : Mode { return modeList[currentModeIndex] }
+    let keyCommandCache = externalKeyboardKeys(Selector("sayKey:"))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +20,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func keyCommands() -> [UIKeyCommand]! {
-        return externalKeyboardKeys(Selector("sayKey:"))
+        return keyCommandCache
     }
     
     func sayKey(command:UIKeyCommand) {
