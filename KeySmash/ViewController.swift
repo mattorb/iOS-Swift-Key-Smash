@@ -19,8 +19,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         currentMode.start()
     }
     
-    func keyCommands() -> [UIKeyCommand]! {
-        return keyCommandCache
+    override var keyCommands: [AnyObject]? {
+        get {
+            return keyCommandCache
+        }
     }
     
     func sayKey(command:UIKeyCommand) {
@@ -34,12 +36,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func textField(textField: UITextField!, shouldChangeCharactersInRange range: NSRange, replacementString string: String!) -> Bool // return NO to not change text
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool // return NO to not change text
     {
         return false; // don't actually change the textfield
     }
 
-    func textFieldShouldReturn(textField: UITextField!) -> Bool
+    func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         currentMode.respondTo("enter")
         return false //ignore enter
