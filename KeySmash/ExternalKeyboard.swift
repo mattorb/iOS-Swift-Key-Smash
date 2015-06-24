@@ -21,7 +21,7 @@ func externalKeyboardKeys(callback:Selector) -> [UIKeyCommand] {
     let digits = "!@#$%^&*()~`_+{}|:\"<>?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=[]\\;',./ "
     
     for digit in digits.characters {
-        commands += [noModifiers, .AlphaShift, .Shift, [UIKeyModifierFlags.AlphaShift, UIKeyModifierFlags.Shift]].map { UIKeyCommand(digit, $0, callback) }
+        commands += [noModifiers, .AlphaShift, .Shift, [.AlphaShift, .Shift]].map { UIKeyCommand(digit, $0, callback) }
     }
     
     // handle some lingering press on ctrl/alt/command + digit
