@@ -5,7 +5,7 @@ class Counting : Mode
 {
     let synthesizer = AVSpeechSynthesizer()
     
-    let numbers = Array("123456789")
+    let numbers = Array("123456789".characters)
     var numberIndex = -1
     
     var targetKey : String { return String(numbers[numberIndex]) }

@@ -5,7 +5,7 @@ class OrderedAlphabet : Mode
 {
     let synthesizer = AVSpeechSynthesizer()
     
-    let letters = Array("abcdefghijklmnopqrstuvwxyz")
+    let letters = Array("abcdefghijklmnopqrstuvwxyz".characters)
     var letterIndex = -1
 
     var targetKey : String { return String(letters[letterIndex]) }

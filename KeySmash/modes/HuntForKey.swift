@@ -5,7 +5,7 @@ class HuntForKey : Mode {
 
     let synthesizer = AVSpeechSynthesizer()
 
-    let letters = Array("abcdefghijklmnopqrstuvwxyz")
+    let letters = Array("abcdefghijklmnopqrstuvwxyz".characters)
     var targetKey = ""
     
     func start()  {

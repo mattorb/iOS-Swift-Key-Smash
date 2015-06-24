@@ -15,27 +15,31 @@ extension UIKeyCommand {
 
 func externalKeyboardKeys(callback:Selector) -> [UIKeyCommand] {
     var commands = [UIKeyCommand]()
-    
+    let noModifiers = UIKeyModifierFlags(rawValue: 0)
+
     // order matters.  ! needs priority over shift-1, @ over shift-2, etc
     let digits = "!@#$%^&*()~`_+{}|:\"<>?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=[]\\;',./ "
     
-    for digit in digits {
-        commands += [nil, .AlphaShift, .Shift, .Shift | .AlphaShift].map { UIKeyCommand(digit, $0, callback) }
+    for digit in digits.characters {
+        commands += [noModifiers, .AlphaShift, .Shift, [UIKeyModifierFlags.AlphaShift, UIKeyModifierFlags.Shift]].map { UIKeyCommand(digit, $0, callback) }
     }
     
-    // handle some lingering press on ctrl/etc + digit
-    for digit in digits {
-         // two-lines because combining them in beta4 causes compiler crash/stuck
-         commands += [.Command, .Control, .Alternate, .Command | .Control, .Command].map { UIKeyCommand(digit, $0, callback) }
-         commands += [.Alternate, .Command | .Control | .Alternate, .Control | .Alternate, .Alternate | .Command].map { UIKeyCommand(digit, $0, callback) }
-        // two-lines because combining them in beta4 causes compiler crash/stuck
+    // handle some lingering press on ctrl/alt/command + digit
+    for digit in digits.characters {
+        let generateKeyCommands = { UIKeyCommand(digit, $0, callback) }
+        
+         // four-lines because combining them all in Swift2 (XC 7b2) causes compiler error "expression too complex"
+         commands += [.Command, .Control, .Alternate].map(generateKeyCommands)
+         commands += [[.Command, .Control], [.Command, .Alternate]].map(generateKeyCommands)
+         commands += [[.Command, .Control, .Alternate]].map(generateKeyCommands)
+         commands += [[.Control, .Alternate], [.Alternate, .Command]].map(generateKeyCommands)
     }
     
-    commands += [UIKeyCommand(UIKeyInputEscape, nil, callback),
-                 UIKeyCommand(UIKeyInputUpArrow, nil, callback),
-                 UIKeyCommand(UIKeyInputDownArrow, nil, callback),
-                 UIKeyCommand(UIKeyInputLeftArrow, nil, callback),
-                 UIKeyCommand(UIKeyInputRightArrow, nil, callback)]
+    commands += [UIKeyCommand(UIKeyInputEscape, noModifiers, callback),
+                 UIKeyCommand(UIKeyInputUpArrow, noModifiers, callback),
+                 UIKeyCommand(UIKeyInputDownArrow, noModifiers, callback),
+                 UIKeyCommand(UIKeyInputLeftArrow, noModifiers, callback),
+                 UIKeyCommand(UIKeyInputRightArrow, noModifiers, callback)]
     
     return commands
 }

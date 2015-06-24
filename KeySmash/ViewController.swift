@@ -19,7 +19,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         currentMode.start()
     }
     
-    override var keyCommands: [AnyObject]? {
+    override var keyCommands: [UIKeyCommand]? {
         get {
             return keyCommandCache
         }
