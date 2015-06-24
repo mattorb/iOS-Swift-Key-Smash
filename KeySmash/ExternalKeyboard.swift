@@ -26,13 +26,17 @@ func externalKeyboardKeys(callback:Selector) -> [UIKeyCommand] {
     
     // handle some lingering press on ctrl/alt/command + digit
     for digit in digits.characters {
-        let generateKeyCommands = { UIKeyCommand(digit, $0, callback) }
+        let modifiers:Array<UIKeyModifierFlags> = [.Command,
+                                                   .Control,
+                                                   .Alternate,
+                                                   [.Command, .Control],
+                                                   [.Command, .Alternate],
+                                                   [.Command, .Control, .Alternate],
+                                                   [.Control, .Alternate],
+                                                   [.Alternate, .Command]
+                                                  ]
         
-         // four-lines because combining them all in Swift2 (XC 7b2) causes compiler error "expression too complex"
-         commands += [.Command, .Control, .Alternate].map(generateKeyCommands)
-         commands += [[.Command, .Control], [.Command, .Alternate]].map(generateKeyCommands)
-         commands += [[.Command, .Control, .Alternate]].map(generateKeyCommands)
-         commands += [[.Control, .Alternate], [.Alternate, .Command]].map(generateKeyCommands)
+        commands += modifiers.map { UIKeyCommand(digit, $0, callback) }
     }
     
     commands += [UIKeyCommand(UIKeyInputEscape, noModifiers, callback),
