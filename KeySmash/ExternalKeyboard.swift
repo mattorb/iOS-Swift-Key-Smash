@@ -32,8 +32,7 @@ func externalKeyboardKeys(callback:Selector) -> [UIKeyCommand] {
                                                    [.Command, .Control], //not an array, single optionset, command+control
                                                    [.Command, .Alternate],
                                                    [.Command, .Control, .Alternate],
-                                                   [.Control, .Alternate],
-                                                   [.Alternate, .Command]
+                                                   [.Control, .Alternate]
                                                   ]
         
         commands += modifiers.map { UIKeyCommand(digit, $0, callback) }
