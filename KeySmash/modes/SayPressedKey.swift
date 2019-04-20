@@ -13,11 +13,11 @@ class SayPressedKey : Mode {
     func respondTo(key: String) {
         switch (key) // UIKeyConstants are NSStrings, beta3 needs same type
         {
-            case UIKeyInputEscape:      say("escape")
-            case UIKeyInputLeftArrow:   say("left")
-            case UIKeyInputRightArrow:  say("right")
-            case UIKeyInputUpArrow:     say("up")
-            case UIKeyInputDownArrow:   say("down")
+            case UIKeyCommand.inputEscape:      say("escape")
+            case UIKeyCommand.inputLeftArrow:   say("left")
+            case UIKeyCommand.inputRightArrow:  say("right")
+            case UIKeyCommand.inputUpArrow:     say("up")
+            case UIKeyCommand.inputDownArrow:   say("down")
             case " ":                   say("space")
             default:                    say(key)
         }

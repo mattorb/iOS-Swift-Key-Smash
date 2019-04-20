@@ -38,11 +38,11 @@ func externalKeyboardKeys(callback:Selector) -> [UIKeyCommand] {
         commands += modifiers.map { UIKeyCommand(digit, $0, callback) }
     }
     
-    commands += [UIKeyCommand(UIKeyInputEscape, noModifiers, callback),
-                 UIKeyCommand(UIKeyInputUpArrow, noModifiers, callback),
-                 UIKeyCommand(UIKeyInputDownArrow, noModifiers, callback),
-                 UIKeyCommand(UIKeyInputLeftArrow, noModifiers, callback),
-                 UIKeyCommand(UIKeyInputRightArrow, noModifiers, callback)]
+    commands += [UIKeyCommand(UIKeyCommand.inputEscape, noModifiers, callback),
+                 UIKeyCommand(UIKeyCommand.inputUpArrow, noModifiers, callback),
+                 UIKeyCommand(UIKeyCommand.inputDownArrow, noModifiers, callback),
+                 UIKeyCommand(UIKeyCommand.inputLeftArrow, noModifiers, callback),
+                 UIKeyCommand(UIKeyCommand.inputRightArrow, noModifiers, callback)]
     
     return commands
 }

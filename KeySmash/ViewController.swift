@@ -25,14 +25,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func sayKey(command:UIKeyCommand) {
-        if(command.input == UIKeyInputRightArrow)
+    @objc func sayKey(command:UIKeyCommand) {
+        if(command.input == UIKeyCommand.inputRightArrow)
         {
             nextMode()
         }
         else
         {
-            currentMode.respondTo(key: command.input)
+            let input = command.input ?? ""
+            currentMode.respondTo(key: input)
         }
     }
     
