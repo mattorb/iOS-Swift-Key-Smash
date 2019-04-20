@@ -9,7 +9,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let modeList: [Mode] = [SayPressedKey(), HuntForKey(), OrderedAlphabet(), Counting()]
     var currentModeIndex = 0
     var currentMode : Mode { return modeList[currentModeIndex] }
-    let keyCommandCache = externalKeyboardKeys(Selector("sayKey:"))
+    let keyCommandCache = externalKeyboardKeys(callback: #selector(sayKey))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,30 +26,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func sayKey(command:UIKeyCommand) {
-        if(command.input as NSString == UIKeyInputRightArrow)
+        if(command.input == UIKeyInputRightArrow)
         {
             nextMode()
         }
         else
         {
-            currentMode.respondTo(command.input)
+            currentMode.respondTo(key: command.input)
         }
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool // return NO to not change text
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool // return NO to not change text
     {
         return false; // don't actually change the textfield
     }
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
-        currentMode.respondTo("enter")
+        currentMode.respondTo(key: "enter")
         return false //ignore enter
     }
     
     func nextMode()
     {
-        currentModeIndex++
+        currentModeIndex+=1
         if(currentModeIndex > modeList.count-1) { currentModeIndex=0; }
         
         currentMode.start()

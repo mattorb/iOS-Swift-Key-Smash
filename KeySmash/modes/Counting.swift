@@ -5,7 +5,7 @@ class Counting : Mode
 {
     let synthesizer = AVSpeechSynthesizer()
     
-    let numbers = Array("123456789".characters)
+    let numbers = Array("123456789")
     var numberIndex = -1
     
     var targetKey : String { return String(numbers[numberIndex]) }
@@ -29,7 +29,7 @@ class Counting : Mode
     }
     
     func nextKey () {
-        numberIndex++
+        numberIndex+=1
         
         if(numberIndex > numbers.count-1) {
             numberIndex = 0;
@@ -39,14 +39,14 @@ class Counting : Mode
         say("Press \(targetKey)")
     }
     
-    func say(word: String) {
-        let utterance = AVSpeechUtterance(string: word.lowercaseString)
-        synthesizer.speakUtterance(utterance)
+    func say(_ word: String) {
+        let utterance = AVSpeechUtterance(string: word.lowercased())
+        synthesizer.speak(utterance)
     }
     
-    func immediatelySay(word: String) {
-        let utterance = AVSpeechUtterance(string: word.lowercaseString)
-        synthesizer.stopSpeakingAtBoundary(.Immediate)
-        synthesizer.speakUtterance(utterance)
+    func immediatelySay(_ word: String) {
+        let utterance = AVSpeechUtterance(string: word.lowercased())
+        synthesizer.stopSpeaking(at: .immediate)
+        synthesizer.speak(utterance)
     }
 }
