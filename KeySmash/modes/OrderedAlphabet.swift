@@ -28,7 +28,7 @@ class OrderedAlphabet : Mode
         }
     }
     
-    func nextKey () {
+    private func nextKey () {
         letterIndex+=1
         
         if(letterIndex > letters.count-1) {
@@ -39,12 +39,12 @@ class OrderedAlphabet : Mode
         say("Type \(targetKey)")
     }
     
-    func say(_ word: String) {
+    private func say(_ word: String) {
         let utterance = AVSpeechUtterance(string: word.lowercased())
         synthesizer.speak(utterance)
     }
     
-    func immediatelySay(_ word: String) {
+    private func immediatelySay(_ word: String) {
         let utterance = AVSpeechUtterance(string: word.lowercased())
         synthesizer.stopSpeaking(at: .immediate)
         synthesizer.speak(utterance)

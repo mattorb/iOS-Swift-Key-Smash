@@ -25,18 +25,18 @@ class HuntForKey : Mode {
         }
     }
     
-    func randomizeKey () {
+    private func randomizeKey () {
         targetKey = String(letters.randomElement()!)
         
         say("Press the \(targetKey) key")
     }
     
-    func say(_ word: String) {
+    private func say(_ word: String) {
         let utterance = AVSpeechUtterance(string: word.lowercased())
         synthesizer.speak(utterance)
     }
     
-    func immediatelySay(_ word: String) {
+    private func immediatelySay(_ word: String) {
         let utterance = AVSpeechUtterance(string: word.lowercased())
         synthesizer.stopSpeaking(at: .immediate)
         synthesizer.speak(utterance)

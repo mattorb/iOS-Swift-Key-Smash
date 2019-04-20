@@ -18,12 +18,12 @@ class SayPressedKey : Mode {
             case UIKeyCommand.inputRightArrow:  say("right")
             case UIKeyCommand.inputUpArrow:     say("up")
             case UIKeyCommand.inputDownArrow:   say("down")
-            case " ":                   say("space")
-            default:                    say(key)
+            case " ":                           say("space")
+            default:                            say(key)
         }
     }
     
-    func say(_ word: String) {
+    private func say(_ word: String) {
         let utterance = AVSpeechUtterance(string: word.lowercased())
         synthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
         synthesizer.speak(utterance)
