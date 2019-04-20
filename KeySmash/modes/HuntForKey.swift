@@ -26,7 +26,7 @@ class HuntForKey : Mode {
     }
     
     func randomizeKey () {
-        let randomLetterIndex = Int.random(in: 0 ... letters.count-1)
+        let randomLetterIndex = Int.random(in: 0 ..< letters.count)
         targetKey = String(letters[randomLetterIndex])
         
         say("Press the \(targetKey) key")
