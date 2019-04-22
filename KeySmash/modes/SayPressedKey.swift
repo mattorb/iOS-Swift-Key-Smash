@@ -11,21 +11,21 @@ class SayPressedKey : Mode {
     }
     
     func respondTo(key: String) {
-        switch (key as NSString) // UIKeyConstants are NSStrings, beta3 needs same type
+        switch (key) // UIKeyConstants are NSStrings, beta3 needs same type
         {
-            case UIKeyInputEscape:      say("escape")
-            case UIKeyInputLeftArrow:   say("left")
-            case UIKeyInputRightArrow:  say("right")
-            case UIKeyInputUpArrow:     say("up")
-            case UIKeyInputDownArrow:   say("down")
-            case NSString(string:" "):  say("space")
-            default:                    say(key)
+            case UIKeyCommand.inputEscape:      say("escape")
+            case UIKeyCommand.inputLeftArrow:   say("left")
+            case UIKeyCommand.inputRightArrow:  say("right")
+            case UIKeyCommand.inputUpArrow:     say("up")
+            case UIKeyCommand.inputDownArrow:   say("down")
+            case " ":                           say("space")
+            default:                            say(key)
         }
     }
     
-    func say(word: String) {
-        let utterance = AVSpeechUtterance(string: word.lowercaseString)
-        synthesizer.stopSpeakingAtBoundary(AVSpeechBoundary.Immediate)
-        synthesizer.speakUtterance(utterance)
+    private func say(_ word: String) {
+        let utterance = AVSpeechUtterance(string: word.lowercased())
+        synthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
+        synthesizer.speak(utterance)
     }
 }

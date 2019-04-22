@@ -5,7 +5,7 @@ class OrderedAlphabet : Mode
 {
     let synthesizer = AVSpeechSynthesizer()
     
-    let letters = Array("abcdefghijklmnopqrstuvwxyz".characters)
+    let letters = Array("abcdefghijklmnopqrstuvwxyz")
     var letterIndex = -1
 
     var targetKey : String { return String(letters[letterIndex]) }
@@ -28,8 +28,8 @@ class OrderedAlphabet : Mode
         }
     }
     
-    func nextKey () {
-        letterIndex++
+    private func nextKey () {
+        letterIndex+=1
         
         if(letterIndex > letters.count-1) {
             letterIndex = 0;
@@ -39,14 +39,14 @@ class OrderedAlphabet : Mode
         say("Type \(targetKey)")
     }
     
-    func say(word: String) {
-        let utterance = AVSpeechUtterance(string: word.lowercaseString)
-        synthesizer.speakUtterance(utterance)
+    private func say(_ word: String) {
+        let utterance = AVSpeechUtterance(string: word.lowercased())
+        synthesizer.speak(utterance)
     }
     
-    func immediatelySay(word: String) {
-        let utterance = AVSpeechUtterance(string: word.lowercaseString)
-        synthesizer.stopSpeakingAtBoundary(.Immediate)
-        synthesizer.speakUtterance(utterance)
+    private func immediatelySay(_ word: String) {
+        let utterance = AVSpeechUtterance(string: word.lowercased())
+        synthesizer.stopSpeaking(at: .immediate)
+        synthesizer.speak(utterance)
     }
 }

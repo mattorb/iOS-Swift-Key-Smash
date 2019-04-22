@@ -20,29 +20,29 @@ func externalKeyboardKeys(callback:Selector) -> [UIKeyCommand] {
     // order matters.  ! needs priority over shift-1, @ over shift-2, etc
     let digits = "!@#$%^&*()~`_+{}|:\"<>?abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=[]\\;',./ "
     
-    for digit in digits.characters {
-        commands += [noModifiers, .AlphaShift, .Shift, [.AlphaShift, .Shift]].map { UIKeyCommand(digit, $0, callback) }
+    for digit in digits {
+        commands += [noModifiers, .alphaShift, .shift, [.alphaShift, .shift]].map { UIKeyCommand(digit, $0, callback) }
     }
     
     // handle some lingering press on ctrl/alt/command + digit
-    for digit in digits.characters {
-        let modifiers:Array<UIKeyModifierFlags> = [.Command,
-                                                   .Control,
-                                                   .Alternate,
-                                                   [.Command, .Control], //not an array, single optionset, command+control
-                                                   [.Command, .Alternate],
-                                                   [.Command, .Control, .Alternate],
-                                                   [.Control, .Alternate]
+    for digit in digits {
+        let modifiers:Array<UIKeyModifierFlags> = [.command,
+                                                   .control,
+                                                   .alternate,
+                                                   [.command, .control], //not an array, single optionset, command+control
+                                                   [.command, .alternate],
+                                                   [.command, .control, .alternate],
+                                                   [.control, .alternate]
                                                   ]
         
         commands += modifiers.map { UIKeyCommand(digit, $0, callback) }
     }
     
-    commands += [UIKeyCommand(UIKeyInputEscape, noModifiers, callback),
-                 UIKeyCommand(UIKeyInputUpArrow, noModifiers, callback),
-                 UIKeyCommand(UIKeyInputDownArrow, noModifiers, callback),
-                 UIKeyCommand(UIKeyInputLeftArrow, noModifiers, callback),
-                 UIKeyCommand(UIKeyInputRightArrow, noModifiers, callback)]
+    commands += [UIKeyCommand(UIKeyCommand.inputEscape, noModifiers, callback),
+                 UIKeyCommand(UIKeyCommand.inputUpArrow, noModifiers, callback),
+                 UIKeyCommand(UIKeyCommand.inputDownArrow, noModifiers, callback),
+                 UIKeyCommand(UIKeyCommand.inputLeftArrow, noModifiers, callback),
+                 UIKeyCommand(UIKeyCommand.inputRightArrow, noModifiers, callback)]
     
     return commands
 }

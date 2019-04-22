@@ -5,7 +5,7 @@ class HuntForKey : Mode {
 
     let synthesizer = AVSpeechSynthesizer()
 
-    let letters = Array("abcdefghijklmnopqrstuvwxyz".characters)
+    let letters = Array("abcdefghijklmnopqrstuvwxyz")
     var targetKey = ""
     
     func start()  {
@@ -25,22 +25,21 @@ class HuntForKey : Mode {
         }
     }
     
-    func randomizeKey () {
-        let randomLetterIndex = random() % letters.count
-        targetKey = String(letters[randomLetterIndex])
+    private func randomizeKey () {
+        targetKey = String(letters.randomElement()!)
         
         say("Press the \(targetKey) key")
     }
     
-    func say(word: String) {
-        let utterance = AVSpeechUtterance(string: word.lowercaseString)
-        synthesizer.speakUtterance(utterance)
+    private func say(_ word: String) {
+        let utterance = AVSpeechUtterance(string: word.lowercased())
+        synthesizer.speak(utterance)
     }
     
-    func immediatelySay(word: String) {
-        let utterance = AVSpeechUtterance(string: word.lowercaseString)
-        synthesizer.stopSpeakingAtBoundary(.Immediate)
-        synthesizer.speakUtterance(utterance)
+    private func immediatelySay(_ word: String) {
+        let utterance = AVSpeechUtterance(string: word.lowercased())
+        synthesizer.stopSpeaking(at: .immediate)
+        synthesizer.speak(utterance)
     }
     
 }
